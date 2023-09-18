@@ -1,0 +1,19 @@
+.carousel-container{
+    width: 100%;
+}
+
+.carousel-img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.products-container{
+    /* border: 1px solid black; */
+    margin-bottom: 2em;
+    /* width: 30%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}

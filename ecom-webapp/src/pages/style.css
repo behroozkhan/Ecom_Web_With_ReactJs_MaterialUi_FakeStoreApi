@@ -1,0 +1,17 @@
+.all-products-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 6em;
+    padding: 1em;
+}
+.heading{
+    width: 100%;
+    margin-bottom: 1.500em;
+    text-align: center;
+}
+.heading-all-products{
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 2rem;
+}
