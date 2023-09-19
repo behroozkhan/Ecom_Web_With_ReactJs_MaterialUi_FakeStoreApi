@@ -14,13 +14,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import Badge from '@mui/material/Badge';
+import { useSearchParams } from "react-router-dom";
+
+
+
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['all', "electronics" , "men's clothing", "women's clothing","jewelery"];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -34,7 +41,8 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          
+          <ListItem key={item} disablePadding onClick={()=> setSearchParams({category:item.toLocaleLowerCase()})} >
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
@@ -69,11 +77,20 @@ function DrawerAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button onClick={()=> setSearchParams({category:item.toLocaleLowerCase()})} key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
           </Box>
+          <IconButton 
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge color="error">
+                <ShoppingBagIcon  />
+              </Badge>
+            </IconButton>
         </Toolbar>
       </AppBar>
       <nav>
