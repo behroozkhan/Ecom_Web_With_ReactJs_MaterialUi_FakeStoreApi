@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -15,10 +14,11 @@ import CardActions from '@mui/material/CardActions';
 export default function MediaControlCard({detail}) {
   const {image,description,title,price,rating,category} = detail;
   console.log("details17",detail);
-  const theme = useTheme();
+
 
   return (
-    <Card sx={{ display: 'flex' }}>
+    <div className="container flex-direction-column" >
+         <Card  sx={{ display: 'flex',}}>
         <CardMedia
         component="img"
         sx={{ width: 200, objectFit:'contain',margin:"0.500em"}}
@@ -50,5 +50,6 @@ export default function MediaControlCard({detail}) {
       </Box>
       
     </Card>
+    </div>
   );
 }
