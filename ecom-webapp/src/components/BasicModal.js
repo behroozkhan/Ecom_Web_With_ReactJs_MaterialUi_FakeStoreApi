@@ -23,7 +23,6 @@ export default function BasicModal({detail,handleClose,open}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <h1>Hello World</h1>
         <MediaControlCard detail={detail} />
         </Box>
       </Modal>
