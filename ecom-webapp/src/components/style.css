@@ -41,3 +41,38 @@
 .icons-cursor{
     cursor: pointer;
 }
+
+
+/* @media only screen and (max-width: 575px) {
+    .container-mediacard {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: wrap;
+    
+    }
+    .card-container{
+        background-color: lightblue !important;
+        border: 2px solid black !important;
+       
+    }
+    .image-media-controlcard{
+        width: 20px;
+    }
+    .box-media-controlcard{
+        background-color: #03a9f4;
+        width: 50;
+    }
+    .title-media-controlcard{
+        font-size: 0.200rem;
+        color: #fff;
+    }
+    .desc-media-controlcard{
+        font-size: 0.200rem;
+    }
+    .price-media-controlcard{
+        font-size: 0.100rem;
+    }
+  } */
