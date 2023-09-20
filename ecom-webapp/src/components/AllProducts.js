@@ -27,7 +27,13 @@ export default function AllProducts({ products,viewDetails }) {
   const addToCart = ()=>{
     console.log("i am add to cart");
     const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    cartData.push({...products,qty:1})
+    const index  = cartData.findIndex(v => v.id === products.id)
+    if(index !== -1){
+      cartData.splice(index,1,{...cartData[index], qty: cartData[index].qty + 1})
+    }else{
+      cartData.push({...products, qty:1})
+     
+    }
     localStorage.setItem('cart',JSON.stringify(cartData))
     setCart(cartData);
     setOpen(true)
