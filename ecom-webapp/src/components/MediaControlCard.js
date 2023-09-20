@@ -43,7 +43,7 @@ export default function MediaControlCard({detail}) {
         <Rating name="controlled-rating" value={rating.rate} precision={0.5}  />
         </Typography>
         <CardActions >
-        <Button size="small" className='btn-modal-car' style={{backgroundColor:"#03a9f4",padding:'10px 30px',color:'#fff',fontWeight:'bold',}}>Add Cart</Button>
+        <Button size="small" className='btn-modal-car' style={{backgroundColor:"#03a9f4",padding:'10px 30px',color:'#fff',fontWeight:'bold',}}>Buy Now</Button>
       </CardActions>
         </CardContent>
   

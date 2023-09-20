@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useContext, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -6,28 +6,48 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
-
+import CartContext from '../context/Cart';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import './style.css'
 
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function AllProducts({ products,viewDetails }) {
+  const {setCart} = useContext(CartContext);
+  const [open,setOpen] = useState(false)
   console.log("products", products);
   const { title, image, description, rating, price } = products;
+;
+ 
+ 
   const addToCart = ()=>{
     console.log("i am add to cart");
+    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    cartData.push({...products,qty:1})
+    localStorage.setItem('cart',JSON.stringify(cartData))
+    setCart(cartData);
+    setOpen(true)
   }
   return (
     <div className="products-container mt-5">
 
 
       <Card style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} sx={{ maxWidth: 400 }}>
-        <CardMedia className='img-fluid p-2' style={{ objectFit: 'contain', marginTop: '10px' }}
-          component="img"
+        <CardMedia className='object-fit-contain mt-2 ' 
+          component="img" 
           alt="green iguana"
           height="140"
-          image={image}
+          image={image} 
         />
+        <Snackbar open={open} anchorOrigin={{horizontal:'right',vertical:'bottom'}} autoHideDuration={6000} onClose={() => setOpen(false)}>
+                    <Alert  onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+                        Product Added Your Cart!
+                    </Alert>
+                </Snackbar>
         <CardContent className='cardcontent'>
           <Typography gutterBottom variant="h5" component="div">
             {title.slice(0, 20)}

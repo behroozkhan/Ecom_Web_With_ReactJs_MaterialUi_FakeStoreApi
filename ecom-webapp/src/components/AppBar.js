@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,7 +17,8 @@ import Button from '@mui/material/Button';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Badge from '@mui/material/Badge';
 import { useSearchParams } from "react-router-dom";
-
+import CartContext from '../context/Cart';
+import TemporaryDrawer from './Drawer';
 
 
 
@@ -28,6 +29,9 @@ function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
+  const [open,setOpen] = useState(false)
+  const {cart,setCart} = useContext(CartContext);
+      
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -82,15 +86,16 @@ function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
-          <IconButton 
+          <IconButton onClick={()=>setOpen(true)}
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge color="error">
+              <Badge badgeContent={cart.length} color="error">
                 <ShoppingBagIcon  />
               </Badge>
             </IconButton>
+            <TemporaryDrawer cartData={cart} open={open} setOpen={setOpen}  />
         </Toolbar>
       </AppBar>
       <nav>
