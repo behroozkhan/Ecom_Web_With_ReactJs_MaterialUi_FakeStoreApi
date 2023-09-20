@@ -13,13 +13,13 @@ const Home = () => {
   const [products, setProducts] = useState([])
   const [open, setOpen] = useState(false)
   const [detail, setDetail] = useState({})
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
 
   useEffect(() => {
     axios('https://fakestoreapi.com/products')
       .then((res) => setProducts(res.data))
       .catch((error) => console.log("error", error))
-  }, [])
+  }, [searchParams])
 
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;
