@@ -7,13 +7,30 @@ import Typography from '@mui/material/Typography';
 import CartContext from '../context/Cart';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 export default function AlignItemsList({ cartData }) {
   const { cart, setCart } = useContext(CartContext)
+
+  const updateQty = (type, id) => {
+    console.log(type, id);
+    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    const index = cartData.findIndex(v => v.id === id);
+    if (type === '+') {
+      cartData.splice(index, 1, { ...cartData[index], qty: cartData[index].qty + 1 })
+    } else {
+      cartData.splice(index,1, {...cartData[index], qty: cartData[index].qty - 1})
+    }
+    localStorage.setItem('cart',JSON.stringify(cartData));
+    setCart(cartData)
+    console.log(cartData, index);
+  }
+
+
+
   console.log("cartData111", cartData);
   return (
     <List className='' sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.paper' }}>
@@ -36,16 +53,16 @@ export default function AlignItemsList({ cartData }) {
                     ${value.price}
                   </Typography>
                   <Typography>
-                    QTY: 
-                    <RemoveCircleIcon  className='icons-cursor ms-1'  color='primary' />
+                    QTY:
+                    <RemoveCircleIcon onClick={() => value.qty > 1 && updateQty("-", value.id)} className='icons-cursor ms-1' color='primary' />
                     {value.qty}
-                    <AddCircleIcon  className='icons-cursor ms-1' color='primary' />
-                    <DeleteIcon  className='icons-cursor ms-1' color='secondary' />
+                    <AddCircleIcon onClick={() => updateQty("+", value.id)} className='icons-cursor ms-1' color='primary' />
+                    <DeleteIcon className='icons-cursor ms-1' color='secondary' />
                   </Typography>
                 </React.Fragment>
               }
             />
-        
+
           </ListItem>
         </div>
       })}
