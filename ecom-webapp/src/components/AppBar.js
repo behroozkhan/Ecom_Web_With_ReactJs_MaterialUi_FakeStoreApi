@@ -16,10 +16,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Badge from '@mui/material/Badge';
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import CartContext from '../context/Cart';
 import TemporaryDrawer from './Drawer';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -28,10 +28,10 @@ const navItems = ['all', "electronics" , "men's clothing", "women's clothing","j
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  let [searchParams, setSearchParams] = useSearchParams();
+  // let [searchParams, setSearchParams] = useSearchParams();
   const [open,setOpen] = useState(false)
-  const {cart,setCart} = useContext(CartContext);
-      
+  const {cart} = useContext(CartContext);
+  const navigate = useNavigate()
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -46,7 +46,9 @@ function DrawerAppBar(props) {
       <List>
         {navItems.map((item) => (
           
-          <ListItem key={item} disablePadding onClick={()=> setSearchParams({category:item.toLocaleLowerCase()})} >
+          <ListItem key={item} disablePadding onClick={()=>    {navigate(`/?category=${item.toLocaleLowerCase()}`,)}
+          
+          } >
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
@@ -81,7 +83,13 @@ function DrawerAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button onClick={()=> setSearchParams({category:item.toLocaleLowerCase()})} key={item} sx={{ color: '#fff' }}>
+              <Button onClick={()=>
+                {navigate(`/?category=${item.toLocaleLowerCase()}`,)}
+              // {setSearchParams({category:item.toLocaleLowerCase()})}
+            
+            } 
+              
+              key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
