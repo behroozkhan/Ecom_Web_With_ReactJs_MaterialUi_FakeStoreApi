@@ -66,7 +66,7 @@ const Footer = () => {
                         </a>
                     </IconButton>
                     <IconButton variant="plain">
-                        <a href="https://www.linkedin.com/in/behroozkhan" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/behrooz-khan-a003b5237/" target="_blank" rel="noopener noreferrer">
                             <LinkedInIcon />
                         </a>
                     </IconButton>
