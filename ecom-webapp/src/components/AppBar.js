@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 240;
-const navItems = ['all', "electronics" , "men's clothing", "women's clothing","jewelery"];
+const navItems = ['All', "electronics" , "men's clothing", "women's clothing","jewelery"];
 
 function DrawerAppBar(props) {
   const { window } = props;
